@@ -6,15 +6,15 @@ const projects = [
     desc: "A beautiful landing page app using React and Tailwind.",
     image: "src/assets/Agh.png", 
     tech: ["React", "TailwindCSS", "framer motion"],
-    live: "www.appgrowthhub.com",
-    code: "https://github.com/2G-Aryan/react-portfolio-abhishekxample",
+    live: "https://www.appgrowthhub.com/",
+    code: "https://github.com/2G-Aryan/react-portfolio-abhishek",
   },
   {
     title: "Vishwakarma civil and stone work",
     desc: "Interactive interior designer website.",
     image: "src/assets/vishwakarma.png",
     tech: ["Nextjs", "Tailwindcss", "Web3Forms"],
-    live: "www.vishwakarmacivilandstonework.com",
+    live: "https://www.vishwakarmacivilandstonework.com/",
     code: "https://github.com/2G-Aryan/Vishwakarma",
   },
   {

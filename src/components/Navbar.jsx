@@ -22,14 +22,19 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Prevent background scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
+  }, [isMenuOpen]);
+
   return (
     <nav
       className={cn(
         "fixed w-full z-40 transition-all duration-300",
-        isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
+        isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-sm" : "py-5"
       )}
     >
-      <div className="container flex items-center justify-between">
+      <div className="container flex items-center justify-between px-4 md:px-0">
         {/* Brand */}
         <a href="#hero" className="text-xl font-bold text-primary flex items-center">
           <span className="relative z-10">
@@ -53,7 +58,7 @@ export const Navbar = () => {
 
         {/* Mobile menu toggle */}
         <button
-          className="md:hidden text-foreground p-2 z-50"
+          className="md:hidden text-foreground p-2 z-50 relative"
           onClick={() => setIsMenuOpen((prev) => !prev)}
           aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
         >
@@ -64,7 +69,7 @@ export const Navbar = () => {
       {/* Mobile Menu */}
       <div
         className={cn(
-          "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center transition-all duration-300 md:hidden",
+          "fixed inset-0 bg-background/95 backdrop-blur-md z-50 flex flex-col items-center justify-center transition-all duration-300 ease-in-out md:hidden",
           isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         )}
       >
@@ -73,7 +78,7 @@ export const Navbar = () => {
             key={key}
             href={item.href}
             onClick={() => setIsMenuOpen(false)}
-            className="text-foreground text-lg py-2 hover:text-primary transition"
+            className="text-foreground text-lg py-3 hover:text-primary transition"
           >
             {item.name}
           </a>

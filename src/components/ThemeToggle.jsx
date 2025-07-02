@@ -3,35 +3,28 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 export const ThemeToggle = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true); // default to dark
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme === "dark") {
-      setIsDarkMode(true);
-      document.documentElement.classList.add("dark");
-    } else {
-      localStorage.setItem("theme", "dark");
-      setIsDarkMode(false);
-    }
+    // Always force dark theme
+    document.documentElement.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+    setIsDarkMode(true);
   }, []);
 
   const toggleTheme = () => {
-    if (isDarkMode) {
-      document.documentElement.classList.remove("light");
-      localStorage.setItem("theme", "dark");
-      setIsDarkMode(false);
-    } else {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark"); // ✅ fixed here
-      setIsDarkMode(true);
-    }
+    // Optional: disable toggle by commenting this function out
+    setIsDarkMode((prev) => !prev);
   };
 
   return (
-    <button onClick={toggleTheme} className={cn("fixed max-sm:hidden top-5 right-5 z-50 p-2 rounded-full transition-colors duration-300",
-      "focus:outline-hidden"
-    )}>
+    <button
+      onClick={toggleTheme}
+      className={cn(
+        "fixed max-sm:hidden top-5 right-5 z-50 p-2 rounded-full transition-colors duration-300",
+        "focus:outline-hidden"
+      )}
+    >
       {isDarkMode ? (
         <Sun className="h-6 w-6 text-yellow-300" />
       ) : (
@@ -40,3 +33,4 @@ export const ThemeToggle = () => {
     </button>
   );
 };
+  
